@@ -48,7 +48,7 @@ To do that we created and env variable so that fluxctl commands runs on that nam
 
 ```
 $env:FLUX_FORWARD_NAMESPACE = "flux"
-fluxctl list-workloads
+fluxctl list-workloads -a
 ```
 At first there wont be any workloads yet, because you need to give write access to your Github repository. You can see
 the same in the logs of flux pod.
@@ -65,6 +65,14 @@ By default, flux will check this git repo every 5 mins. If you want to manually 
 ```
 fluxctl sync
 ```
+
+Flux can also look into - Automated deployment of new container image, which means it can update the git and then deploy.
+For every workload, you need to create a policy in order to tell flux how it should drive changes to the container 
+registry. 
+
+By default, the main feature of flux is to sync with git, but if you want to monitor the container registry as well, thats
+also an option.  
+
 
 ```
   annotations:
