@@ -15,6 +15,9 @@ spec:
         app: demo-app
     spec:
       containers:
+        - env:
+            - name: APP_FORTUNE_SOURCE
+              value: file
           image: dhananjay12/demo-app:2.0.0
           imagePullPolicy: Always
           name: demo-app
