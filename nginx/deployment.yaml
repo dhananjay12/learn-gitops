@@ -1,0 +1,44 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: static-nginx
+  namespace: nginx
+  annotations:
+    fluxcd.io/automated: 'true'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: static-nginx
+  template:
+    metadata:
+      labels:
+        app: static-nginx
+    spec:
+      containers:
+        - image: dhananjay12/static-nginx:29d7f40
+          imagePullPolicy: Always
+          name: static-nginx
+          ports:
+            - containerPort: 80
+          resources: {}
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: static-nginx
+  name: static-nginx
+  namespace: nginx
+spec:
+  type: LoadBalancer #default ClusterIP
+  ports:
+    - protocol: "TCP" #default anyways
+      port: 8083
+      targetPort: 80
+  selector:
+    app: static-nginx
