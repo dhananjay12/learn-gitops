@@ -50,6 +50,11 @@ To do that we created and env variable so that fluxctl commands runs on that nam
 export FLUX_FORWARD_NAMESPACE=flux
 fluxctl list-workloads -a
 ```
+or supply the namespace flux is installed in via
+
+```
+fluxctl list-workloads --k8s-fwd-ns flux -a
+```
 
 At first there wont be any workloads yet, because you need to give write access to your Github repository. You can see
 the same in the logs of flux pod.
