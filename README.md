@@ -31,7 +31,7 @@ fluxctl install \
 --git-email=${GHUSER}@users.noreply.github.com \
 --git-url=git@github.com:${GHUSER}/learn-gitops \
 --git-branch=master \
---git-path=demo-app \
+--git-path=demo-app,nginx \
 --namespace=flux | kubectl apply -f -
 
 ```
@@ -47,11 +47,14 @@ When we run fluxctl, it will be run against a specific namespace and since we ha
 To do that we created and env variable so that fluxctl commands runs on that namespace.
 
 ```
-$env:FLUX_FORWARD_NAMESPACE = "flux"
+export FLUX_FORWARD_NAMESPACE=flux
 fluxctl list-workloads -a
 ```
+
 At first there wont be any workloads yet, because you need to give write access to your Github repository. You can see
 the same in the logs of flux pod.
+
+Note: Be aware that exposing the Flux API in this way is a security hole, because it can be accessed without authentication. See the docs
 
 We need to add the deployment key from Flux to the Github Deployed keys. Get the key from flux using:
 
@@ -74,7 +77,7 @@ fluxctl install \
 --git-email=${GHUSER}@users.noreply.github.com \
 --git-url=git@github.com:${GHUSER}/learn-gitops \
 --git-branch=master \
---git-path=demo-app \
+--git-path=demo-app,nginx \
 --namespace=flux | kubectl delete -f -
 ```
 
@@ -100,8 +103,8 @@ You can follow the semversion too. Refer the docs.
 
 
 ```
-fluxctl policy -w nginx:deployment/static-nginx
+fluxctl list-workloads -a
 ```
 
-
+[Slides](https://docs.google.com/presentation/d/1dTxUJL1hi9hnDvSF7HlW3aaoK2Q0GkW7dfQUYHlteJk/edit?usp=sharing)
 
