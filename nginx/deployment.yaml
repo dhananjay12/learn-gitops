@@ -17,12 +17,12 @@ spec:
         app: static-nginx
     spec:
       containers:
-        - image: dhananjay12/static-nginx:29d7f40
-          imagePullPolicy: Always
-          name: static-nginx
-          ports:
-            - containerPort: 80
-          resources: {}
+      - image: dhananjay12/static-nginx:9779470
+        imagePullPolicy: Always
+        name: static-nginx
+        ports:
+        - containerPort: 80
+        resources: {}
       restartPolicy: Always
 status: {}
 
@@ -37,8 +37,8 @@ metadata:
 spec:
   type: LoadBalancer #default ClusterIP
   ports:
-    - protocol: "TCP" #default anyways
-      port: 8083
-      targetPort: 80
+  - protocol: "TCP"   #default anyways
+    port: 8083
+    targetPort: 80
   selector:
     app: static-nginx
