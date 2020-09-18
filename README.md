@@ -83,7 +83,9 @@ fluxctl install \
 
 # Delete a namespace
 
+```
 kubectl delete namespaces <insert-some-namespace-name>
+```
 
 # Flux for Docker Regsitry
 
