@@ -112,5 +112,9 @@ You can follow the semversion too. Refer the docs.
 fluxctl list-workloads -a
 ```
 
+```
+fluxctl list-workloads --namespace=frontend
+```
+
 [Slides](https://docs.google.com/presentation/d/1dTxUJL1hi9hnDvSF7HlW3aaoK2Q0GkW7dfQUYHlteJk/edit?usp=sharing)
 
