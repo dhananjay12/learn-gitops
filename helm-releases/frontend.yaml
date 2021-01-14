@@ -11,7 +11,7 @@ spec:
   targetNamespace: frontend
   chart:
     repository: https://dhananjay12.github.io/learn-helm
-    name: generic-chart
+    name: mygithubcharts/generic-chart
     version: 0.0.1
   values:
     image:
