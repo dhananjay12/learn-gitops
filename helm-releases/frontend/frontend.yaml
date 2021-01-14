@@ -1,0 +1,36 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: frontend
+  namespace: frontend
+  annotations:
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: "semver:*"
+spec:
+  releaseName: frontend
+  targetNamespace: frontend
+  chart:
+    repository: https://dhananjay12.github.io/learn-helm
+    name: generic-chart
+    version: 0.0.1
+  values:
+    image:
+      repository: dhananjay12/angular-test-versioning
+      tag: 1.2.0
+      pullPolicy: Always
+    containerPort: 80
+    service:
+      httpPort: 80
+      targetPort: 80
+    ingress:
+      enabled: false
+      annotations:
+        "kubernetes.io/ingress.class": "nginx"
+        "nginx.ingress.kubernetes.io/proxy-body-size": "50m"
+        "nginx.ingress.kubernetes.io/ssl-redirect": "false"
+      #    "nginx.ingress.kubernetes.io/use-regex": "true"
+      hosts:
+        - host: "kubernetes.docker.internal"
+          paths:
+            - /
