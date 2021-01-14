@@ -33,7 +33,6 @@ fluxctl install \
 --git-branch=master \
 --git-path=demo-app,nginx \
 --namespace=flux | kubectl apply -f -
-
 ```
 `git-path` is the folder structure you want flux to synchronize with. Flux will recursively go through these directories
 structure. It will see if there is any change in these directories and apply it to the cluster. 
